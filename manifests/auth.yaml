@@ -9,4 +9,4 @@ spec:
       istio: ingressgateway
   jwtRules:
     - issuer: test@example.com
-      jwksUri: https://example.com/jwks.json
+      jwksUri: http://oidc-service.oidc.svc.cluster.local:8080/jwks.json

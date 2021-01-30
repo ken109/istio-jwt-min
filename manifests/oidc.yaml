@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oidc-service
+spec:
+  type: ClusterIP
+  selector:
+    app: oidc
+  ports:
+    - port: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oidc-deployment
+spec:
+  selector:
+    matchLabels:
+      app: oidc
+  template:
+    metadata:
+      labels:
+        app: oidc
+    spec:
+      containers:
+        - name: oidc
+          image: test-oidc
+          ports:
+            - containerPort: 8080

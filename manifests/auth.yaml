@@ -10,3 +10,22 @@ spec:
   jwtRules:
     - issuer: test@example.com
       jwksUri: http://oidc-service.oidc.svc.cluster.local:8080/jwks.json
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: test-oidc-deny
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  action: DENY
+  rules:
+    - from:
+        - source:
+            notRequestPrincipals: [ "*" ]
+      to:
+        - operation:
+            paths:
+              - /hello

@@ -37,6 +37,7 @@ cat <<EOF >/usr/local/etc/lcl/base/hosts.txt
 *.localhost 127.0.0.1
 EOF
 
+# install -> https://github.com/ken109/lcl
 lcl base stop
 lcl base start dns
 
